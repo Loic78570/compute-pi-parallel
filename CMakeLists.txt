@@ -7,15 +7,15 @@ set(CMAKE_C_STANDARD 11)
 
 
 
-add_executable(test CM1/ex1.c)
+add_executable(test src/ex1.c)
 
 add_executable(donutspin cool/donut.c)
-add_executable(testPIc CM1/test-pi.c)
-add_executable(testPI2 CM1/test-pi2.c)
-add_executable(testPI3 CM1/test-pi3.c)
-add_executable(testFibo1 CM1/test-fibo.c)
-add_executable(testFibo3 CM1/test-fibo3.c)
-add_executable(testFibo2 CM1/testFibo2.c)
+add_executable(testPIc src/test-pi.c)
+add_executable(testPI2 src/test-pi2.c)
+add_executable(testPI3 src/test-pi3.c)
+add_executable(testFibo1 src/test-fibo.c)
+add_executable(testFibo3 src/test-fibo3.c)
+add_executable(testFibo2 src/testFibo2.c)
 
 
 
