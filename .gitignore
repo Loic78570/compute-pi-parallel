@@ -1,3 +1,9 @@
 # Project exclude paths
 /cmake-build-debug/
 /cmake-build-release/
+/CM1/00-IntroProgSystemeReseau.pdf
+/CM1/*.pdf
+/CM1/*.zip
+/CM1/*.exe
+/CM1/testPi.exe
+/cool/
