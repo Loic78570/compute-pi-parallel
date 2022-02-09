@@ -2,9 +2,9 @@
 /cmake-build-debug/
 /cmake-build-release/
 /src/00-IntroProgSystemeReseau.pdf
-/CM1/*.pdf
-/CM1/*.zip
-/CM1/*.exe
+/src/*.pdf
+/src/*.zip
+/src/*.exe
 *.exe
 /src/testPi.exe
 /cool/
