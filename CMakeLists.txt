@@ -18,6 +18,7 @@ add_executable(testFibo3 src/test-fibo3.c)
 add_executable(testFibo2 src/testFibo2.c)
 add_executable(lab9 src/lab9.c)
 add_executable(assignment02 src/assignment02/assignment2.c)
+add_executable(assig-v2 src/assignment02/asig-v2.c)
 
 
 
@@ -37,6 +38,7 @@ set_target_properties(lab9 PROPERTIES VERSION 1.0)
 target_link_libraries(assignment02 PRIVATE OpenMP::OpenMP_CXX)
 #target_link_libraries(assignment02 PRIVATE MPI_C)
 set_target_properties(assignment02 PROPERTIES VERSION 1.0)
+set_target_properties(assig-v2 PROPERTIES VERSION 1.0)
 include(GNUInstallDirs)
 
 

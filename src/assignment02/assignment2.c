@@ -116,29 +116,37 @@ int main(){
     i = 1;
     j = 0;
     int e = 0;
+    int n = 4;
 
-    for(int i = 1; i<=ROWS; i++){
+    for(int i = 1; i<=n; i++){
         while(j<i){
             int ibis = i+e;
             int jbis = j-e;
-            while(ibis>0 && jbis<COLUMNS){
-                if(0<=ibis<ROWS-1 && 0<=jbis<COLUMNS-1){
+            while(ibis>0 && jbis<n){
+                if(0<=ibis<n-1 && 0<=jbis<n-1){
 //                    bool test = ibis<3;
 //                    printf("test : ibis<3 : %d\n", test);
-                    printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[ibis][jbis], a[ibis-1][jbis+1], ibis, jbis);
+//                    printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[ibis][jbis], a[ibis-1][jbis+1], ibis, jbis);
                     printf("couple (i,j) = (%d,%d)\n", ibis, jbis);
                 }
+//                printf("couple (i,j) = (%d,%d)\n", ibis, jbis);
                 ibis--;
                 jbis++;
             }
 //            printf("sortie de boucle\n");
             j++;
-            if(i!=ROWS)
+            if(i!=n)
                 e++;
+
         }
         e=0;
 //        printf("sortie de boucle 2\n");
-        j=i-1;
+//        j=i-1;
+        if(i==4){
+            j=j;
+        } else {
+            j=0;
+        }
     }
 
 
