@@ -24,7 +24,7 @@ int main (int argc, const char *argv[]) {
     printf("/         Ce programme calcule ce résultat avec un           /\n");
     printf("/         nombre de threads différents à chaque étape.       /\n");
     printf("/                                                            /\n");
-    printf("/         Source : https://gist.github.com/bbengfort         /\n");
+    printf("/          Source : https://gist.github.com/bbengfort        /\n");
     printf("/                                                            /\n");
     printf("/************************************************************/\n");
     printf("\n");

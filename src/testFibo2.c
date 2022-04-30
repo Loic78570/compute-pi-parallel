@@ -28,7 +28,7 @@ int main(){
 #pragma omp parallel
     {
 #pragma omp single
-        z=fib(50);
+        z=fib(46);
     }
     double sec=omp_get_wtime()-s;
 

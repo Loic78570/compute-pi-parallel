@@ -12,6 +12,9 @@ void red() {
 void yellow() {
         printf("\033[1;33m");
 }
+void green() {
+    printf("\033[1;32m");
+}
 void reset() {
     printf("\033[0m");
 }
@@ -24,12 +27,12 @@ int main(){
     printf("/         Ce programme calcule pi selon la méthode           /\n");
     printf("/         de Monte-Carlo. Le programme génère plusieurs      /\n");
     printf("/         points et estime tour par tour si le point se      /\n"
-                  "/         trouve dans un cercle de rayon 1.                  /\n");
+           "/         trouve dans un cercle de rayon 1.                  /\n");
     printf("/                                                            /\n");
     printf("/         Ce programme calcule ce résultat avec un           /\n");
     printf("/         nombre de threads différents à chaque étape.       /\n"
-                  "/         Attention, ce programme demande beaucoup de        /\n"
-                  "/         ressources à l'ordinateur.                         /\n");
+           "/         Attention, ce programme demande beaucoup de        /\n"
+           "/         ressources à l'ordinateur.                         /\n");
     printf("/                                                            /\n");
     printf("/         Source : https://github.com/loic78570              /\n");
     printf("/                                                            /\n");
@@ -68,7 +71,12 @@ int main(){
         yellow();
         printf("PI = %.12g ", estimPI);
         reset();
-        printf("calculé en %.2g secondes (±%.4g)\n", time, delta);
+        printf("calculé en ");
+        green();
+        printf("%.2g secondes", time);
+        reset();
+        printf(" (±%.4g)\n", delta);
+        reset();
     }
 
 
