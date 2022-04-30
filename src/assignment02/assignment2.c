@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
-#define ROWS 4
-#define COLUMNS 4
+#include <stdbool.h>
+
+#define ROWS 3
+#define COLUMNS 3
 
 //char **genmatrix(){
 //
@@ -111,46 +113,34 @@ int main(){
     printf("XXX\n");
     //search for top left to bottom right
 
-    i = 0;
+    i = 1;
     j = 0;
-//    for(i = 0;i < ROWS;i++){
-    while(i<ROWS){
-//        for(j = COLUMNS-1;j >= 0;j--){
-        while(j>=0){
-            printf("test i: %d, j: %d, val: %c\n", i, j, a[i][j]);
-            if((i!=COLUMNS) && (j!=COLUMNS)){
-//                printf("bonjour");
-                int ibis = i;
-                int jbis = j;
-                while((ibis!=0) && (jbis!=COLUMNS)){
+    int e = 0;
 
-//                    printf("ibis : %d, jbis: %d\n ", ibis, jbis);
-
-                    if(ibis<ROWS){
-                        printf("comparing : %c, %c\n", a[ibis][jbis], a[ibis-1][jbis+1]);
-                        printf("with i : %d, j: %d\n", ibis, jbis);
-                        if(a[ibis][jbis]==a[ibis-1][jbis+1]){
-                            ind_palin++;
-                        }
-                        else if(ind_palin>1){
-                            num_palins++;
-                            ind_palin = 1;
-                        }
-                    }
-
-                    ibis--;
-                    jbis++;
+    for(int i = 1; i<=ROWS; i++){
+        while(j<i){
+            int ibis = i+e;
+            int jbis = j-e;
+            while(ibis>0 && jbis<COLUMNS){
+                if(0<=ibis<ROWS-1 && 0<=jbis<COLUMNS-1){
+//                    bool test = ibis<3;
+//                    printf("test : ibis<3 : %d\n", test);
+                    printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[ibis][jbis], a[ibis-1][jbis+1], ibis, jbis);
+                    printf("couple (i,j) = (%d,%d)\n", ibis, jbis);
                 }
-
+                ibis--;
+                jbis++;
             }
-
+//            printf("sortie de boucle\n");
             j++;
-            if(i==COLUMNS+1){
-                break;
-            }
+            if(i!=ROWS)
+                e++;
         }
-        i++;
+        e=0;
+//        printf("sortie de boucle 2\n");
+        j=i-1;
     }
+
 
     printf("nb palindrome linéaire : %d", num_palins);
 
