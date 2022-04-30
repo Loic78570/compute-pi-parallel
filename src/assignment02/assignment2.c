@@ -113,41 +113,88 @@ int main(){
     printf("XXX\n");
     //search for top left to bottom right
 
+//    i = 1;
+//    j = 0;
+//    int e = 0;
+//    int n = 4;
+//    int cntr = 0;
+//
+//    for(int i = 1; i<=n; i++){
+//        while(j<i){
+//            printf("I,J : %d,%d\n", i, j);
+//            int ibis = i+e;
+//            int jbis = j-e;
+//            while(ibis>0 && jbis<n){
+//                if(0<=ibis<n-1 && 0<=jbis<n-1){
+////                    bool test = ibis<3;
+////                    printf("test : ibis<3 : %d\n", test);
+////                    printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[ibis][jbis], a[ibis-1][jbis+1], ibis, jbis);
+//                    printf("couple (i,j) = (%d,%d)\n", ibis, jbis);
+//                    if (a[ibis][jbis] == a[ibis-1][jbis+1]){
+//                        cntr++;
+//                    }
+//                    else if(cntr>0){
+//                        num_palins++;
+//                        cntr=0;
+//                    }
+//
+//                }
+////                printf("couple (i,j) = (%d,%d)\n", ibis, jbis);
+//                ibis--;
+//                jbis++;
+//            }
+////            printf("sortie de boucle\n");
+//            j++;
+//            if(i!=n)
+//                e++;
+//
+//
+//        }
+//        e=0;
+////        printf("sortie de boucle 2\n");
+//        j=i-1;
+//
+//
+//        if(cntr>0){
+//            cntr=0;
+//            num_palins++;
+//        }
+//    }
+
+    int j_scale = 0;
+    int n = 1;
     i = 1;
     j = 0;
-    int e = 0;
-    int n = 4;
+    int lim = ROWS;
 
-    for(int i = 1; i<=n; i++){
-        while(j<i){
-            int ibis = i+e;
-            int jbis = j-e;
-            while(ibis>0 && jbis<n){
-                if(0<=ibis<n-1 && 0<=jbis<n-1){
-//                    bool test = ibis<3;
-//                    printf("test : ibis<3 : %d\n", test);
-//                    printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[ibis][jbis], a[ibis-1][jbis+1], ibis, jbis);
-                    printf("couple (i,j) = (%d,%d)\n", ibis, jbis);
-                }
-//                printf("couple (i,j) = (%d,%d)\n", ibis, jbis);
-                ibis--;
-                jbis++;
-            }
-//            printf("sortie de boucle\n");
+    while(n<lim){
+        while(i>j_scale){
+            printf("Couple (i,j) = (%d,%d)\n", i, j);
+            printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[i][j], a[i-1][j+1], j, i);
+
             j++;
-            if(i!=n)
-                e++;
-
+            i--;
         }
-        e=0;
-//        printf("sortie de boucle 2\n");
-//        j=i-1;
-        if(i==4){
-            j=j;
-        } else {
+        if(j_scale==lim-2){
+            break;
+        }
+        printf("n : %d\n", n);
+        if(n<lim-1){
+            n++;
+            i=n;
             j=0;
         }
+        else if(n==lim-1){
+            j_scale++;
+            j=j_scale;
+            i=n;
+//            printf("val j : %d", j);
+//            printf("val i : %d", i);
+//            printf("val n: %d\n", n);
+        }
+
     }
+
 
 
     printf("nb palindrome linéaire : %d", num_palins);
