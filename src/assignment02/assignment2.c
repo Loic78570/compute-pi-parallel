@@ -138,24 +138,24 @@ int main(){
 //        j--;
 //    }
 
-i =1, j=3;
+int lim = 2;
+i =1, j=lim;
 int n=1, k = 0;
 
-while(n<=3){
-    while(i>0){
+
+while(n<=lim && j>0){
+    while(i>0 && j>0){
         printf("(i,j) = (%d,%d)\n", i, j);
         i--;j--;
     }
-    if(n<=3){
+    if(n<lim){
         n++;
         i=n;
-        j=3;
-    } else if (n==3){
+        j=lim;
+    } else if (n==lim){
         i=n;
         k++;
-        j=3-k;
-    } else if (j==0){
-        break;
+        j=lim-k;
     }
 }
 
@@ -168,7 +168,7 @@ while(n<=3){
     n = 1;
     i = 1;
     j = 0;
-    int lim = ROWS;
+    lim = ROWS;
 
 //#pragma omp parallel while private(i,j) shared(ind_palin,num_palins, lim, n)
 //    while(n<lim){
