@@ -4,8 +4,8 @@
 #include <sys/time.h>
 #include <omp.h>
 
-#define ROWS 3
-#define COLUMNS 3
+#define ROWS 4
+#define COLUMNS 4
 
 
 
@@ -26,9 +26,10 @@ int main(){
     omp_set_num_threads(omp_get_num_procs());
 
     int i,j;
-    static char a[COLUMNS][ROWS] = {{'a', 'b', 'c'},
-                                    {'d', 'e', 'f'},
-                                    {'g', 'h', 'a'}};
+    static char a[COLUMNS][ROWS] = {{'a', 'b', 'c', 'd'},
+                                    {'e', 'f', 'g', 'h'},
+                                    {'i', 'j', 'k', 'l'},
+                                    {'m', 'n', 'o', 'p'}};
 
     struct timeval tv1, tv2;
     struct timezone tz;
@@ -138,24 +139,30 @@ int main(){
 //        j--;
 //    }
 
-int lim = 2;
+int lim = ROWS-1;
 i =1, j=lim;
-int n=1, k = 0;
+int n=1, k = 0, h = 0;
 
 
 while(n<=lim && j>0){
     while(i>0 && j>0){
-        printf("(i,j) = (%d,%d)\n", i, j);
-        i--;j--;
+        int delta = (k-n)+h*2;
+        printf("val n : %d, val k : %d -- ", n, k);
+        printf("(i,j) = (%d,%d) (k-n=%d)\n", i, j, delta);
+
+        if(delta == 0){
+            // même lettre
+            printf("même case -> singleton\n");
+        }
+        if(i+delta>=0 && j+delta>=0)
+            printf("Comparing :  = (%c,%c) (%d,%d) et (%d,%d)\n", a[i][j], a[i+delta][j+delta]
+            , i, j, i+delta, j+delta);
+        i--;j--;h++;
     }
     if(n<lim){
-        n++;
-        i=n;
-        j=lim;
+        n++; i=n; j=lim; h=0;
     } else if (n==lim){
-        i=n;
-        k++;
-        j=lim-k;
+        i=n; k++; j=lim-k; h=0;
     }
 }
 
