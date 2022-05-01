@@ -94,39 +94,62 @@ int main(){
     i = 0;
     j = COLUMNS-1;
 //    for(i = 0;i < ROWS;i++){
-#pragma omp parallel while private(i,j, ibis, jbis) shared(ind_palin,num_palins)
-    while(i<ROWS){
-//        for(j = COLUMNS-1;j >= 0;j--){
-        while(j>=0){
-            if((i!=0) && (j!=0)){
-                int ibis = i;
-                int jbis = j;
-                while((ibis!=0) && (jbis!=0)){
-//                    printf("ibis : %d, jbis: %d\n ", ibis, jbis);
+//#pragma omp parallel while private(i,j, ibis, jbis) shared(ind_palin,num_palins)
+//    while(i<ROWS){
+////        for(j = COLUMNS-1;j >= 0;j--){
+//        while(j>=0){
+//            if((i!=0) && (j!=0)){
+//                int ibis = i;
+//                int jbis = j;
+//                int x = 0;
+//                while((ibis!=0) && (jbis!=0)){
+////                    printf("ibis : %d, jbis: %d\n ", ibis, jbis);
+//
+//                    if(ibis<ROWS){
+//                        if(i-j>=0){
+//                            x = -i;
+//                        } else {
+//                            x = i-j;
+//                        }
+//                        printf("comparing : %c, %c (%d, %d) with (%d, %d)\n", a[ibis][jbis], a[ibis-1][jbis+x]
+//                        , ibis, jbis, ibis-1, jbis+x);
+//
+//                        printf("val i: %d, val j: %d", i, j);
+//                        if(a[ibis][jbis]==a[ROWS-ibis][ROWS-jbis] && jbis!=ibis){
+//                            ind_palin++;
+//                        }
+//                        else if(ind_palin>1){
+//                            num_palins++;
+//                            ind_palin = 1;
+//                        }
+//                    }
+//
+//                    ibis--;
+//                    jbis--;
+//                }
+//
+//            }
+//
+//            i++;
+//            if(i==COLUMNS+1){
+//                break;
+//            }
+//        }
+//        j--;
+//    }
 
-                    if(ibis<ROWS){
-                        printf("comparing : %c, %c\n", a[ibis][jbis], a[ibis-1][jbis-1]);
-                        if(a[ibis][jbis]==a[jbis][ibis] && jbis!=ibis){
-                            ind_palin++;
-                        }
-                        else if(ind_palin>1){
-                            num_palins++;
-                            ind_palin = 1;
-                        }
-                    }
+    i = 1;
+    j = 2;
+    int n = 0;
 
-                    ibis--;
-                    jbis--;
-                }
-
-            }
-
+    while(n<=3){
+        while (i<=n){
+            printf("(%d, %d)\n", i, j);
             i++;
-            if(i==COLUMNS+1){
-                break;
-            }
         }
-        j--;
+
+
+        n++;
     }
 
     printf("XXX\n");
@@ -134,52 +157,52 @@ int main(){
 
     int j_scale = 0;
     ind_palin = 0;
-    int n = 1;
+    n = 1;
     i = 1;
     j = 0;
     int lim = ROWS;
 
-#pragma omp parallel while private(i,j) shared(ind_palin,num_palins, lim, n)
-    while(n<lim){
-        while(i>j_scale){
-//            printf("Couple (i,j) = (%d,%d)\n", i, j);
-            printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[i][j], a[j][i], j, i);
-
-            if(a[i][j] == a[j][i] && i!=j){
-                ind_palin++;
-            } else if(ind_palin>0){
-                num_palins++;
-                ind_palin=0;
-            }
-
-            j++;
-            i--;
-        }
-        if(j_scale==lim-2){
-            break;
-        }
-//        printf("n : %d\n", n);
-        if(n<lim-1){
-
-            n++;
-            i=n;
-            j=0;
-        }
-        else if(n==lim-1){
-            j_scale++;
-            j=j_scale;
-            i=n;
-//            printf("val j : %d", j);
-//            printf("val i : %d", i);
-//            printf("val n: %d\n", n);
-        }
-
-    }
-
-    if(ind_palin>0){
-        num_palins++;
-        ind_palin=0;
-    }
+//#pragma omp parallel while private(i,j) shared(ind_palin,num_palins, lim, n)
+//    while(n<lim){
+//        while(i>j_scale){
+////            printf("Couple (i,j) = (%d,%d)\n", i, j);
+//            printf("comparing %c and %c. pos i = %d, pos j = %d\n", a[i][j], a[j][i], j, i);
+//
+//            if(a[i][j] == a[j][i] && i!=j){
+//                ind_palin++;
+//            } else if(ind_palin>0){
+//                num_palins++;
+//                ind_palin=0;
+//            }
+//
+//            j++;
+//            i--;
+//        }
+//        if(j_scale==lim-2){
+//            break;
+//        }
+////        printf("n : %d\n", n);
+//        if(n<lim-1){
+//
+//            n++;
+//            i=n;
+//            j=0;
+//        }
+//        else if(n==lim-1){
+//            j_scale++;
+//            j=j_scale;
+//            i=n;
+////            printf("val j : %d", j);
+////            printf("val i : %d", i);
+////            printf("val n: %d\n", n);
+//        }
+//
+//    }
+//
+//    if(ind_palin>0){
+//        num_palins++;
+//        ind_palin=0;
+//    }
 
     gettimeofday(&tv2, &tz);
 
