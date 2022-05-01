@@ -138,19 +138,27 @@ int main(){
 //        j--;
 //    }
 
-    i = 1;
-    j = 2;
-    int n = 0;
+i =1, j=3;
+int n=1, k = 0;
 
-    while(n<=3){
-        while (i<=n){
-            printf("(%d, %d)\n", i, j);
-            i++;
-        }
-
-
-        n++;
+while(n<=3){
+    while(i>0){
+        printf("(i,j) = (%d,%d)\n", i, j);
+        i--;j--;
     }
+    if(n<=3){
+        n++;
+        i=n;
+        j=3;
+    } else if (n==3){
+        i=n;
+        k++;
+        j=3-k;
+    } else if (j==0){
+        break;
+    }
+}
+
 
     printf("XXX\n");
     //search for top left to bottom right
