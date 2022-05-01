@@ -4,8 +4,8 @@
 #include <sys/time.h>
 #include <omp.h>
 
-#define ROWS 4
-#define COLUMNS 4
+#define ROWS 40
+#define COLUMNS 40
 
 
 
@@ -26,19 +26,20 @@ int main(){
     omp_set_num_threads(omp_get_num_procs());
 
     int i,j;
-    static char a[COLUMNS][ROWS] = {{'a', 'b', 'c', 'd'},
-                                    {'e', 'f', 'g', 'c'},
-                                    {'i', 'j', 'k', 'l'},
-                                    {'m', 'n', 'o', 'p'}};
+//    static char a[COLUMNS][ROWS] = {{'a', 'b', 'c', 'd'},
+//                                    {'e', 'a', 'g', 'h'},
+//                                    {'i', 'j', 'b', 'l'},
+//                                    {'m', 'n', 'o', 'p'}};
+    static char a[COLUMNS][COLUMNS];
 
     struct timeval tv1, tv2;
     struct timezone tz;
     double elapsed;
 
     //GENERATION
-//    for(i = 0;i < ROWS;i++)
-//        for(j = 0;j < COLUMNS;j++)
-//            a[i][j] = (rand() % 26) + 'A';
+    for(i = 0;i < ROWS;i++)
+        for(j = 0;j < COLUMNS;j++)
+            a[i][j] = (rand() % 26) + 'A';
 
    // PRINTING
 
@@ -143,40 +144,49 @@ int main(){
     i =1, j=lim;
     int n=1, k = 0, h = 0;
     ind_palin = 0;
+    int delta;
 
 
-
+#pragma omp parallel while private(i,j) shared(ind_palin,num_palins)
     while(n<=lim && j>0){
         while(i>0 && j>0){
-            int delta = (k-n)+h*2;
-            printf("val n : %d, val k : %d -- ", n, k);
-            printf("(i,j) = (%d,%d) (k-n=%d)\n", i, j, delta);
+            delta = (k-n)+h*2;
+//            printf("val n : %d, val k : %d -- ", n, k);
+//            printf("(i,j) = (%d,%d) (k-n=%d)\n", i, j, delta);
 
             if(delta == 0){
                 // même lettre
-                printf("même case -> singleton\n");
-                if(ind_palin>0)
-                    ind_palin++;
+//                printf("même lettre -> singleton (i,j) = (%d, %d)\n", i, j);
             }
             else if(i+delta>=0 && j+delta>=0) {
-                printf("Comparing :  = (%c,%c) (%d,%d) et (%d,%d)\n", a[i][j], a[i + delta][j + delta],
-                       i, j, i + delta, j + delta);
-                printf("ind palin : %d\n", ind_palin);
+//                printf("Comparing :  = (%c,%c) (%d,%d) et (%d,%d)\n", a[i][j], a[i + delta][j + delta],
+//                       i, j, i + delta, j + delta);
+//                printf("ind palin : %d\n", ind_palin);
                 if(a[i][j] == a[i+delta][j+delta] && delta!=0){
-                    printf("palin!");
+//                    printf("palin!");
                     ind_palin++;
                 }
+                else if(ind_palin>0)
+                    ind_palin = 0;
             }
 
-            else if(ind_palin>0){
+//            else if(ind_palin>0 && a[i][j] != a[i+delta][j+delta]){
+//                ind_palin=0;
+//            }
+
+            else if(ind_palin>1){
+                printf("incr...");
                 num_palins++;
                 ind_palin=0;
             }
             i--;j--;h++;
         }
-        printf("ind palin : %d (l174)", ind_palin);
-        if(ind_palin>0){
+//        printf("ind palin : %d (l174)", ind_palin);
+//        printf("delta : %d", delta);
+        if(ind_palin>1){
 //            printf("\nincr 175 \n\n");
+//            printf("For :  = (%c,%c) (%d,%d) et (%d,%d)\n", a[i][j], a[i + delta][j + delta],
+//                   i, j, i + delta, j + delta);
             num_palins++;
             ind_palin=0;
         }
@@ -190,7 +200,7 @@ int main(){
     }
 
     if(ind_palin>0){
-//        printf("incr 189 ");
+        printf("incr 189 ");
         num_palins++;
         ind_palin=0;
     }
