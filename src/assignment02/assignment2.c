@@ -27,7 +27,7 @@ int main(){
 
     int i,j;
     static char a[COLUMNS][ROWS] = {{'a', 'b', 'c', 'd'},
-                                    {'e', 'f', 'g', 'h'},
+                                    {'e', 'f', 'g', 'c'},
                                     {'i', 'j', 'k', 'l'},
                                     {'m', 'n', 'o', 'p'}};
 
@@ -139,33 +139,61 @@ int main(){
 //        j--;
 //    }
 
-int lim = ROWS-1;
-i =1, j=lim;
-int n=1, k = 0, h = 0;
+    int lim = ROWS-1;
+    i =1, j=lim;
+    int n=1, k = 0, h = 0;
+    ind_palin = 0;
 
 
-while(n<=lim && j>0){
-    while(i>0 && j>0){
-        int delta = (k-n)+h*2;
-        printf("val n : %d, val k : %d -- ", n, k);
-        printf("(i,j) = (%d,%d) (k-n=%d)\n", i, j, delta);
 
-        if(delta == 0){
-            // même lettre
-            printf("même case -> singleton\n");
+    while(n<=lim && j>0){
+        while(i>0 && j>0){
+            int delta = (k-n)+h*2;
+            printf("val n : %d, val k : %d -- ", n, k);
+            printf("(i,j) = (%d,%d) (k-n=%d)\n", i, j, delta);
+
+            if(delta == 0){
+                // même lettre
+                printf("même case -> singleton\n");
+                if(ind_palin>0)
+                    ind_palin++;
+            }
+            else if(i+delta>=0 && j+delta>=0) {
+                printf("Comparing :  = (%c,%c) (%d,%d) et (%d,%d)\n", a[i][j], a[i + delta][j + delta],
+                       i, j, i + delta, j + delta);
+                printf("ind palin : %d\n", ind_palin);
+                if(a[i][j] == a[i+delta][j+delta] && delta!=0){
+                    printf("palin!");
+                    ind_palin++;
+                }
+            }
+
+            else if(ind_palin>0){
+                num_palins++;
+                ind_palin=0;
+            }
+            i--;j--;h++;
         }
-        if(i+delta>=0 && j+delta>=0)
-            printf("Comparing :  = (%c,%c) (%d,%d) et (%d,%d)\n", a[i][j], a[i+delta][j+delta]
-            , i, j, i+delta, j+delta);
-        i--;j--;h++;
-    }
-    if(n<lim){
-        n++; i=n; j=lim; h=0;
-    } else if (n==lim){
-        i=n; k++; j=lim-k; h=0;
-    }
-}
+        printf("ind palin : %d (l174)", ind_palin);
+        if(ind_palin>0){
+//            printf("\nincr 175 \n\n");
+            num_palins++;
+            ind_palin=0;
+        }
 
+        if(n<lim){
+            n++; i=n; j=lim; h=0;
+        } else if (n==lim){
+            i=n; k++; j=lim-k; h=0;
+        }
+
+    }
+
+    if(ind_palin>0){
+//        printf("incr 189 ");
+        num_palins++;
+        ind_palin=0;
+    }
 
     printf("XXX\n");
     //search for top left to bottom right
