@@ -4,7 +4,7 @@
 #include <omp.h>
 #define MAX_THREADS 8
 
-static unsigned int steps = 100000000;
+static unsigned int steps = 790000000;
 
 void red() {
     printf("\033[1;31m");
@@ -55,7 +55,7 @@ int main(){
         double step = 1.0/(double) steps;
         double Ntotal = 0, Ncercle = 0;
 
-#pragma omp parallel for reduction(+:Ncercle)
+#pragma omp parallel for reduction(+:Ncercle) default(none) private(steps, Xrand, Yrand)
         for (int i = 0; i < steps; i++) {
             Xrand = (double) rand() / RAND_MAX;
             Yrand = (double) rand() / RAND_MAX;
