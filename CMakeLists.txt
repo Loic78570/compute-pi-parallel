@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(Prog__Syst�me_et_R�seau C)
+project(ProgParallele C)
 project(solver LANGUAGES CXX)
 #important
 
