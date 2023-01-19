@@ -4,7 +4,7 @@
 #include <math.h>
 #define MAX_THREADS 8
 
-static unsigned int steps = 100000000;
+static unsigned int steps = 500000000;
 double step;
 
 int main (int argc, const char *argv[]) {
